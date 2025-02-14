@@ -1,0 +1,41 @@
+<label>{{label}}</label>
+<input id="username1" name="username" placeholder="{{placeholder}}" 
+(input)="onChange()" (blur)="onblur();"
+[(ngModel)]="value"
+[ngClass]="{'is-invalid': controlDir.control?.touched &&  !controlDir.control?.valid }">
+<div>
+  @if(controlDir.control?.pending) {
+    <mat-spinner mode="indeterminate" [diameter]="30"></mat-spinner>
+   }
+</div>
+<div>
+  @if(controlDir.control?.touched && controlDir.control?.invalid) {
+    <div class="error-msg">
+      @if(controlDir.control?.errors?.['required'] ) {
+       <span> username is required</span>
+      }
+    </div>
+     <div class="error-msg">
+      @if(controlDir.control?.errors?.['minlength'] && controlDir.control?.dirty) {
+        <span>username should be min 4 char </span>
+      }
+    </div> 
+    <div class="error-msg">
+      @if(controlDir.control?.errors?.['maxlength'] && controlDir.control?.dirty) {
+        <span>username should be max 8 char </span>
+      }
+    </div> 
+    
+    <div class="error-msg">
+      
+      @if(controlDir.control?.errors?.['uniqueCompanyName'] && controlDir.control?.dirty) {
+        
+          <span> user name already exists </span>
+      }
+    </div> 
+} 
+</div>
+  
+
+
+

@@ -1,2 +1,93 @@
-<app-main-nav></app-main-nav>
-<router-outlet />
+<div class="container">
+  <div>
+     Item1
+  </div>
+  <div>
+     Item2
+  </div>
+  <div>
+     Items3
+  </div>
+  <div>
+     Items4
+  </div>
+  <div>
+     Items5
+  </div>
+</div>
+
+<div class="center">
+ <span class="item"  >dfdfdddddd</span>
+</div>
+<button (click)="toggleActive()">
+    Click to Toggle Active Class
+  </button>
+
+
+
+<!-- <app-main-nav></app-main-nav> -->
+<!-- {{ categories$ | async | json }} -->
+<div id="parent" style="padding: 20px; background-color: lightblue;"  (click)="parent($event)" (click)="handleOuterDivCapture()" capture>
+    Parent
+    <div id="child"   style="padding: 20px; background-color: lightgreen;" (click)="child($event)" (click)="handleInnerDivCapture()" capture>
+      Child
+    </div>
+
+
+  </div>
+
+  <ul (click)="handleListClick($event)">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+  </ul>
+
+<div>
+    <form [formGroup]="loginForm" name="loginForm" (ngSubmit)="submit()">
+        <div>
+            <app-input formControlName="username" label="user name" placeholder="user name">
+            </app-input>
+        </div>
+        <label>password</label>
+        <div>
+            <input type="text" name="password" formControlName="password" >
+                @if(loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].touched) {
+                    <div class="error-msg">
+                        password required
+                    </div>
+                }
+        </div>
+        <label>Eamil</label>
+        <div>
+            <input type="text" name="email" formControlName="email" >
+                @if(loginForm.controls['email'].errors?.['required'] && loginForm.controls['email'].touched) {
+                    <div class="error-msg">
+                        password required
+                    </div>
+                }
+                @if(loginForm.controls['email'].errors?.['emailValidator']) {
+                    <div class="error-msg">
+                        email is not valid
+                    </div>
+                }
+        </div>
+        <div>
+            <input type="checkbox" id="acceptTerms" name="terms"  formControlName="terms"
+            [ngClass]="{ 'error-msg-check' : loginForm.controls['terms'].errors?.['required'] && loginForm.controls['terms'].touched }">
+             <label>Please accept and terms</label>
+               @if(loginForm.controls['terms'].errors?.['required'] && loginForm.controls['terms'].touched) {
+                   <div class="error-msg">
+                       Please check terms
+                   </div>
+               }
+        </div>
+        <div>
+            <button type="submit" name="submit" [disabled]="!loginForm.valid">login</button>
+        </div>
+        <!-- [disabled]="!loginForm.valid" -->
+    </form>
+</div>
+{{loginForm.valid}}
+<!-- [disabled]="!loginForm.valid" -->

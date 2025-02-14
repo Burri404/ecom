@@ -54,12 +54,28 @@
                   "maximumError": "4kb"
                 }
               ],
+              "fileReplacements": [
+              {
+              "replace": "src/environments/environment.ts",
+               "with": "src/environments/environment.ts"
+              }
+             ],
+             "optimization": true,
+              "sourceMap": true,
+              "namedChunks": true,
               "outputHashing": "all"
             },
             "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+              "optimization": true,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
